@@ -7,8 +7,10 @@ function AddMovie(){
     const [description, setDescription] = useState('');
     const [genre_id, setGenre_id] = useState('');
     const dispatch = useDispatch();
-    const allGenres = useSelector(store => store.genres)
-
+    const allGenres = useSelector(store => store.genres);
+   
+    
+    
     useEffect(()=>{
         console.log('AddMovie component mounted');
         dispatch({type:'FETCH_GENRES'});
@@ -19,7 +21,6 @@ function AddMovie(){
         console.log('in handle submit');
         event.preventDefault();
         console.log('title is', title);
-        console.log('genre is', genre);
         console.log('genre_id is', genre_id);
 
         const newMovie = {
