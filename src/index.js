@@ -18,6 +18,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_THIS_MOVIE_GENRES', fetchThisMovieGenres);
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('ADD_MOVIE', addMovie);
+    yield takeEvery('EDIT_MOVIE', editMovie);
 }
 
 function* fetchAllMovies() {
@@ -85,6 +86,17 @@ function* addMovie(action){
         console.log('Error posting a movie');
         
     }
+}
+
+//edit the selected movie 
+function* editMovie(action){
+ console.log('in editMovie, action.payload is', action.payload);
+ try{
+     yield axios.put('/api/movie/', action.payload)
+ } catch(error) {
+     console.log('Error editing a movie');
+     
+ }
 }
 
 // Create sagaMiddleware

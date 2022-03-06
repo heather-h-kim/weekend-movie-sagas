@@ -14,6 +14,9 @@ function Details() {
     const handleClick = () => {
         history.push('/');
     }
+    const editMovie = () => {
+        history.push('/edit_movie');
+    }
 
 
     return (
@@ -40,6 +43,7 @@ function Details() {
                             </Typography>
                             <Typography sx={{ cursor: 'pointer' }} variant="body2">
                                 <button onClick={handleClick}>Back to List</button>
+                                <button onClick={editMovie}>Edit this movie</button>
                             </Typography>
                         </Grid>
                     </Grid>

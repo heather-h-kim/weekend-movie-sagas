@@ -64,4 +64,22 @@ router.post('/', (req, res) => {
   })
 })
 
+router.put('/', (req, res) => {
+  console.log('req.body is', req.body);
+  const queryText = `
+  UPDATE "movies"
+  SET "title" = $1, "description" =$2
+  WHERE "id" = $3;
+  `;
+
+  const valueArray = [req.body.title, req.body.description, req.body.id];
+
+  pool.query(queryText, valueArray)
+  .then(()=> {res.sendStatus(200)})
+  .catch((error) => {
+    console.log('Error updating selected movie', error);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;

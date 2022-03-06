@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 
 function EditMovie(){
@@ -6,14 +6,18 @@ function EditMovie(){
     const [description, setDescription] = useState('');
     const thisMovie = useSelector(store => store.thisMovie)
     console.log('This movie is', thisMovie);
+    const dispatch = useDispatch();
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
        console.log('Hi');
        const editInfo = {
+           id: thisMovie.id,
            title: title,
            description: description
        }
+       dispatch({type:'EDIT_MOVIE', payload: editInfo})
     }
+
     return(
         <div>
            <form onSubmit={handleSubmit}>
