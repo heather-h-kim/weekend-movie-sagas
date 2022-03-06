@@ -28,6 +28,8 @@ router.get('/:id', (req, res) => {
   `;
    pool.query(queryText, [req.params.id])
    .then((result) => {
+     console.log('result is', result.rows);
+     
      res.send(result.rows);
    }).catch((error) => {
      console.log('Error GETting genres for the selected movie', error);

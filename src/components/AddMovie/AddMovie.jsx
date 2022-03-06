@@ -5,7 +5,6 @@ function AddMovie(){
     const [title, setTitle] = useState('');
     const [poster, setPoster] = useState('');
     const [description, setDescription] = useState('');
-    const [genre, setGenre] = useState('');
     const [genre_id, setGenre_id] = useState('');
     const dispatch = useDispatch();
     const allGenres = useSelector(store => store.genres)
