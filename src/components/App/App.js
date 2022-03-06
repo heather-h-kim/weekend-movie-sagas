@@ -21,6 +21,7 @@ function App() {
 
   return (
     <div className="App">
+      <header>
       <h1>The Movies Saga!</h1>
       <Router>
       <Button
@@ -44,6 +45,31 @@ function App() {
         <MenuItem component={Link} to="/" onClick={handleClose}>Movie List</MenuItem>
         <MenuItem component={Link} to="/add_movie" onClick={handleClose}>Add Movie</MenuItem>
       </Menu>
+      </Router>
+      </header>
+     
+      <Router>
+      {/* <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        Navigation
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem component={Link} to="/" onClick={handleClose}>Movie List</MenuItem>
+        <MenuItem component={Link} to="/add_movie" onClick={handleClose}>Add Movie</MenuItem>
+      </Menu> */}
 
         <Route path="/" exact>
           <MovieList />

@@ -23,7 +23,6 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <MovieListItem movie={movie}/>
-                           
                         </div>
                     );
                 })}

@@ -23,8 +23,8 @@ function MovieListItem({ movie }) {
 
 
     return (
-        <div className="container">
-            <Card sx={{ maxWidth: 345 }}>
+        <div>
+            <Card sx={{ maxWidth: 320, height: 380 }}>
                 <CardActionArea onClick={handleClick}>
                     <CardMedia
                         component="img"
@@ -40,8 +40,6 @@ function MovieListItem({ movie }) {
                 </CardActionArea>
             </Card>
 
-            {/* <h3>{movie.title}</h3>
-            <img onClick={handleClick} src={movie.poster} alt={movie.title} /> */}
 
         </div>
     )

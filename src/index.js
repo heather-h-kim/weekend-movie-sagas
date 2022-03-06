@@ -10,6 +10,13 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
+import fetchAllMovies from './sagas/fetchAllMovies.saga';
+import fetchThisMovie from './sagas/fetchThisMovie.saga';
+import fetchThisMovieGenres from './sagas/fetchThisMovieGenres.saga';
+import fetchGenres from './sagas/fetchGenres.saga';
+import addMovie from './sagas/addMovie.saga';
+import editMovie from './sagas/editMovie.saga';
+
 
 // Create the rootSaga generator function
 function* rootSaga() {
@@ -19,84 +26,6 @@ function* rootSaga() {
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('ADD_MOVIE', addMovie);
     yield takeEvery('EDIT_MOVIE', editMovie);
-}
-
-function* fetchAllMovies() {
-    // get all movies from the DB
-    try {
-        const movies = yield axios.get('/api/movie');
-        console.log('get all:', movies.data);
-        yield put({ type: 'SET_MOVIES', payload: movies.data });
-
-    } catch {
-        console.log('get all error');
-    }
-        
-}
-
-//get details of the selected movie
-function* fetchThisMovie(action){
-    try{
-        console.log('in fetchThisMovie');
-        console.log('id is', action.payload);
-        const movie = yield axios.get(`/api/movie/${action.payload}`)
-        console.log('get one movie', movie.data);
-        yield put({type: 'SET_THIS_MOVIE', payload: movie.data});
-    } catch (error) {
-        console.log('Error getting the selected movie', error);
-        
-    }
-}
-
-//get genres of the selected movie
-function* fetchThisMovieGenres(action) {
-    try{
-        console.log('in fetchThisMovieGenres');
-        const genres = yield axios.get(`api/genre/${action.payload}`)
-        console.log('genres are', genres.data);
-        yield put({type: 'ADD_GENRES', payload: genres.data})
-        
-    } catch(error){
-        console.log('Error getting genres of the selected movie', error);
-    }
-}
-
-//get all genres for the dropdown
-function* fetchGenres() {
-    try{
-        const allGenres = yield axios.get('/api/genre');
-        console.log('all genres are', allGenres.data);
-        yield put({type:'SET_GENRES', payload: allGenres.data})
-    } catch(error){
-        console.log('Error getting all genres', error);
-        
-    }
-}
-
-//post a new movie to the database
-function* addMovie(action){
-    console.log('in addMovie');
-    
-    console.log('action.payload is', action.payload);
-    
-    try{
-        yield axios.post('/api/movie', action.payload)
-        yield put({type:'FETCH_MOVIES'});
-    }catch (error) {
-        console.log('Error posting a movie');
-        
-    }
-}
-
-//edit the selected movie 
-function* editMovie(action){
- console.log('in editMovie, action.payload is', action.payload);
- try{
-     yield axios.put('/api/movie/', action.payload)
- } catch(error) {
-     console.log('Error editing a movie');
-     
- }
 }
 
 // Create sagaMiddleware
