@@ -16,7 +16,9 @@ import fetchThisMovieGenres from './sagas/fetchThisMovieGenres.saga';
 import fetchGenres from './sagas/fetchGenres.saga';
 import addMovie from './sagas/addMovie.saga';
 import editMovie from './sagas/editMovie.saga';
-
+import movies from './reducers/movies.reducer.js';
+import thisMovie from './reducers/thisMovie.reducer.js';
+import genres from './reducers/genres.reducer.js';
 
 // Create the rootSaga generator function
 function* rootSaga() {
@@ -31,51 +33,7 @@ function* rootSaga() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Used to store movies returned from the server
-const movies = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_MOVIES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
 
-//Used to store one movie
-const thisMovie = (state = {
-    id: '',
-    title: '',
-    poster: '',
-    description: '',
-    genres: []
-}, action) => {
-    switch (action.type) {
-        case 'SET_THIS_MOVIE':
-        console.log('this movie is', action.payload);
-            return {...state, 
-                id: action.payload[0].id, 
-                title: action.payload[0].title,
-                poster: action.payload[0].poster,
-                description: action.payload[0].description,
-            };
-        case 'ADD_GENRES':
-            return {...state,
-                genres: action.payload
-            }
-        default:
-            return state;
-    }
-}
-
-// Used to store the movie genres
-const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
 
 // Create one store that all components can use
 const storeInstance = createStore(
