@@ -6,6 +6,7 @@ function AddMovie(){
     const [poster, setPoster] = useState('');
     const [description, setDescription] = useState('');
     const [genre, setGenre] = useState('');
+    const [genre_id, setGenre_id] = useState('');
     const dispatch = useDispatch();
     const allGenres = useSelector(store => store.genres)
 
@@ -20,11 +21,13 @@ function AddMovie(){
         event.preventDefault();
         console.log('title is', title);
         console.log('genre is', genre);
+        console.log('genre_id is', genre_id);
 
         const newMovie = {
             title: title,
             poster: poster,
-            description: description
+            description: description,
+            genre_id: genre_id
         };
 
         dispatch({type:'ADD_MOVIE', payload: newMovie});
@@ -46,29 +49,30 @@ function AddMovie(){
                 value={poster}
                 onChange={(event) => setPoster(event.target.value)}
             /><br></br>
-            <div>
-            <label htmlFor="description">Movie Description</label>
+        
+            <label>Movie Description:
             <textarea 
-                id="description" 
                 rows="5"
                 cols="100"
                 placeholder="movie description"
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
             />
-            </div><br></br>
-            <div>
-            <label htmlFor="genres">Choose genres:</label>
+            </label>
+            <br></br>
+            <label>Choose genres:
             <select 
-             name="genres" 
-             id="genres"
-             value={genre}
-             onChange={(event) => setGenre(event.target.value)}>
+                value={genre_id}
+                onChange={(event) => {
+                    setGenre_id(event.target.value);
+                }}
+             >
                 {allGenres.map(genre => (
-                    <option key={genre.id} value={genre.name}>{genre.name}</option>
+                    <option key={genre.id} value={genre.id}>{genre.name}</option>
                 ))}
             </select>
-            </div>
+            </label>
+         
             <button type='submit'>Submit</button>        
         </form>
     )
