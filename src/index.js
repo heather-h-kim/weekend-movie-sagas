@@ -16,6 +16,8 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_THIS_MOVIE', fetchThisMovie);
     yield takeEvery('FETCH_THIS_MOVIE_GENRES', fetchThisMovieGenres);
+    yield takeEvery('FETCH_GENRES', fetchGenres);
+    yield takeEvery('ADD_MOVIE', addMovie);
 }
 
 function* fetchAllMovies() {
@@ -58,6 +60,32 @@ function* fetchThisMovieGenres(action) {
     }
 }
 
+//get all genres for the dropdown
+function* fetchGenres() {
+    try{
+        const allGenres = yield axios.get('/api/genre');
+        console.log('all genres are', allGenres.data);
+        yield put({type:'SET_GENRES', payload: allGenres.data})
+    } catch(error){
+        console.log('Error getting all genres', error);
+        
+    }
+}
+
+//post a new movie to the database
+function* addMovie(action){
+    console.log('in addMovie');
+    
+    console.log('action.payload is', action.payload);
+    
+    try{
+        yield axios.post('/api/movie', action.payload)
+        yield put({type:'FETCH_MOVIES'});
+    }catch (error) {
+        console.log('Error posting a movie');
+        
+    }
+}
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
