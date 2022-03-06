@@ -33,8 +33,6 @@ function* rootSaga() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-
-
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({

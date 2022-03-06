@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function EditMovie(){
     const [title, setTitle] = useState('');
@@ -7,6 +8,7 @@ function EditMovie(){
     const thisMovie = useSelector(store => store.thisMovie)
     console.log('This movie is', thisMovie);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = (event) => {
        console.log('Hi');
@@ -16,6 +18,10 @@ function EditMovie(){
            description: description
        }
        dispatch({type:'EDIT_MOVIE', payload: editInfo})
+    }
+
+    const handleClick = () => {
+        history.push('/');
     }
 
     return(
@@ -42,7 +48,7 @@ function EditMovie(){
             <button type='submit'>Save</button>        
            
         </form>
-            {/* <button onClick={handleClick}>Cancel</button>    */}
+            <button onClick={handleClick}>Cancel</button>   
         </div>
     )
 }
