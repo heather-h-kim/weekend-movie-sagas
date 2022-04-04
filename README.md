@@ -1,9 +1,25 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Weekend-movie-saga
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+This app displays the movies saved in the database. If you click on one movie, you can see the movie's information as well as edit the information. You can also add new movies by entering title, poster url, description and selecting a genre from the dropdown.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+
+## Installation
+ 1. Open up your editor of choice and run npm install
+ 2. Copy the postgreSQL queries and paste them into Postico
+ 3. Run npm run server and npm run client
+ 4. Navigate to `localhost:3000`
+
+ ## Built With
+
+* React
+* Node
+* Express
+* postgreSQL
+* Javascript
+* CSS
+* Redux
+* Saga

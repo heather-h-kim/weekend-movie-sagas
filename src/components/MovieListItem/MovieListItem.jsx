@@ -18,9 +18,10 @@ function MovieListItem({ movie }) {
         console.log('movie is', movie);
         dispatch({ type: 'FETCH_THIS_MOVIE', payload: movie.id });
         dispatch({ type: 'FETCH_THIS_MOVIE_GENRES', payload: movie.id });
-        history.push('/details')
+        history.push(`/details/${movie.id}`)
     }
-
+    //{() => handleClick(movie.id)}
+    //useParams?
 
     return (
         <div>

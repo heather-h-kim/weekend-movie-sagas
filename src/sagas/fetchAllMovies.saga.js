@@ -8,7 +8,7 @@ function* fetchAllMovies() {
         console.log('get all:', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
 
-    } catch {
+    } catch (error) {
         console.log('get all error');
     }        
 }
